@@ -1,6 +1,7 @@
 package com.example.restjava10.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +30,13 @@ public class Student {
     private String firstName;
     private String lastName;
     private int age;
+    @Email
+    @Column(unique = true)
     private String email;
     private LocalDate createdDate;
     private LocalDate graduationDate;
     private boolean isBlocked;
+    private String phoneNumber;
+
+
 }

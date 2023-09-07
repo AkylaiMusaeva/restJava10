@@ -1,10 +1,10 @@
 package com.example.restjava10.api;
 
-import com.example.restjava10.dto.SimpleResponse;
-import com.example.restjava10.dto.StudentRequest;
-import com.example.restjava10.dto.StudentRequestRecord;
-import com.example.restjava10.dto.StudentResponse;
+import com.example.restjava10.dto.*;
 import com.example.restjava10.service.StudentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/students")
 @RequiredArgsConstructor
+@Tag(name="Student Api")
 public class StudentApi {
 
     private final StudentService studentService;
@@ -27,7 +28,7 @@ public class StudentApi {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public SimpleResponse saveStudent(@RequestBody StudentRequestRecord studentRequest) {
+    public SimpleResponse saveStudent(@RequestBody @Valid StudentRequestRecord studentRequest) {
         return studentService.saveStudent(studentRequest);
     }
 
@@ -49,5 +50,14 @@ public class StudentApi {
     public SimpleResponse deleteStudent(@PathVariable Long studentId) {
         return studentService.deleteStudent(studentId);
     }
+
+    @GetMapping("/pagination")
+    public PaginationResponse pagination(
+            @RequestParam int currentPage,
+            @RequestParam int pageSize){
+        return studentService.getAllByPagination(currentPage,pageSize);
+
+    }
+
 
 }

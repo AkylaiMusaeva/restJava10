@@ -13,4 +13,5 @@ public record SignUpRequest(
         String email,
         String password,
         Role role) {
+
 }

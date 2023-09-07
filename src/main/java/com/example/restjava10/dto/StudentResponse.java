@@ -17,8 +17,9 @@ public class StudentResponse {
     private LocalDate createdDate;
     private LocalDate graduationDate;
     private boolean isBlocked;
+    private String phoneNumber;
 
-    public StudentResponse(Long id, String fullName, int age, String email, LocalDate createdDate, LocalDate graduationDate, boolean isBlocked) {
+    public StudentResponse(Long id, String fullName, int age, String email, LocalDate createdDate, LocalDate graduationDate, boolean isBlocked,String phoneNumber) {
         this.id = id;
         this.fullName = fullName;
         this.age = age;
@@ -26,5 +27,9 @@ public class StudentResponse {
         this.createdDate = createdDate;
         this.graduationDate = graduationDate;
         this.isBlocked = isBlocked;
+        this.phoneNumber=phoneNumber;
+
     }
+
+
 }
